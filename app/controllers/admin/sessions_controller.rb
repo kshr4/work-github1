@@ -33,3 +33,8 @@ def after_sign_in_path_for(resource)
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 end
+
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :index_customers_on_reset_password_token])
+  end

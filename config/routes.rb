@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+    devise_for :customers, controllers: {
+    registrations: "public/registrations",#登録
+    sessions: 'public/sessions'#ログイン
+  }
+
+  devise_for :admins, controllers: {
+    sessions: "admin/sessions"#ログイン
+  }
+
   namespace :public do
     get 'items/index'
     get 'items/show'
@@ -7,18 +16,13 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
   end
-  devise_for :customers, controllers: {
-    registrations: "public/registrations",#登録
-    sessions: 'public/sessions'#ログイン
-  }
-
-  devise_for :admins, controllers: {
-    sessions: "admin/sessions"#ログイン
-  }
   scope module: :public do
     root controller: :homes, action: :top
     get :about, controller: :homes, action: :about
     resources :items, only: [:index, :show]
+    get 'customers/my_page' => 'customers#show'
+    get 'customers/information/edit' => 'customers#edit'
+    patch 'customers/information' => 'customers#update'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     resources :cart_items, only: [:index, :update, :destroy, :create] do
