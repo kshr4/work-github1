@@ -1,5 +1,40 @@
-<p>会員情報編集</p>
 
-<%=link_to "編集内容を保存", unsubscribe_path, class: "btn btn-success" %>
+<h4>会員情報編集</h4>
+
+<body>
+ <table border="1">
+<%= form_with model: current_customer, url: customers_information_path do |f| %>
+    <tr>
+      <th>氏名</th>
+      <th> <%= f.text_field :last_name %>　<%= f.text_field :first_name %>　</th>
+    </tr>
+    <tr>
+      <td>フリガナ</td>
+      <td> <%= f.text_field :last_name_kana %>　<%= f.text_field :first_name_kana %>　</td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= f.text_field :postal_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= f.text_field :address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= f.text_field :telephone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= f.text_field :email %></td>
+    </tr>
+
+
+  </table>
+</body>
+</html>
+  <br>
+  <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+<% end %>
 
 <%=link_to "退会する", unsubscribe_path, class: "btn btn-danger" %>
