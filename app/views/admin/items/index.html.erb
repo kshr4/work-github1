@@ -1,0 +1,20 @@
+<h4>商品一覧</h4>
+
+  <%= link_to new_admin_item_path, class: "btn btn-light" do%>
+  +
+  <%end%>
+<br>
+<table border="1">
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+    </tr>
+<% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= link_to item.name, admin_item_path(item.id), class: "btn btn-light" %></td>
+      <td><%= item.price %></td>
+    </tr>
+<% end %>
+</table>
